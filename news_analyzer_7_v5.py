@@ -1,22 +1,4 @@
-"""
-news_analyzer_7_v4.py
-─────────────────────
-Topic clustering with batched POS validation and semantic thematic labeling.
 
-IMPROVEMENTS over v3:
-  • Batched POS via nlp.pipe() — identical to v3 but now also propagates
-    relation-type weights from the edges table into cluster scoring.
-  • cluster_articles: expose soft-cluster probabilities for future use.
-  • label_clusters: lazy Polars throughout; TF-IDF filter expressed as a
-    single lazy join instead of two collect() calls.
-  • rank_clusters: additionally scores by avg absolute sentiment deviation
-    (high controversy clusters float up alongside high-volume ones).
-  • generate_local_narratives: includes avg sentiment in narrative output
-    so the PDF can colour-code cluster cards without re-computing it.
-  • export_results: writes cluster_topics.csv + cluster_narratives.json
-    (same as v3) but also writes cluster_graph.json — a node/link JSON
-    ready for D3 or any graph renderer in the PDF.
-"""
 
 import json
 import re
