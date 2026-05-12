@@ -1,39 +1,4 @@
-"""
-news_report_builder_v6.py
-─────────────────────────
-Unified PDF intelligence report generator.
 
-CHANGES vs v4
-─────────────
-OUTPUT
-  • HTML and plaintext outputs removed; PDF is the sole deliverable.
-  • DATA_DIR now reads from shared_news_func_2 (no more v12/v15 mismatch).
-
-NEW VISUALISATIONS IN PDF
-  • Topic Cluster page  — ranked topic-cluster table with colour-coded
-    sentiment, article count, and key entities per cluster, sourced from
-    cluster_topics.csv / cluster_narratives.json produced by analyzer_7.
-  • Relationship Network chart  — matplotlib graph of the top-N entity
-    nodes, edges weighted by SVO relation count vs co-occurrence.
-  • Entity Sentiment Distribution histogram  — shows the full spread of
-    entity average sentiment scores (not just crisis/positive buckets).
-  • Controversy Heatmap table  — entities ranked by |current − average|
-    sentiment delta, surfacing fast-moving stories.
-  • Source Self-Reference scatter  — article volume vs self-ref % per
-    source, distinguishing independent vs self-promotional outlets.
-
-ARCHITECTURE IMPROVEMENTS
-  • _build_chart_images() is the single chart-rendering entry point;
-    all charts share one matplotlib figure lifecycle (no leaked figures).
-  • Charts are rendered once and reused (same as v4, kept).
-  • _build_executive_summary() extended to include cluster data.
-  • generate_all() loop now also loads cluster data if available.
-  • Removed generate_substack_html(), generate_substack_plaintext(),
-    generate_api_json(), _save_chart_pngs() — PDF-only mode.
-  • Lazy Polars frames used in _process_entities() and _process_sources().
-  • _process_entities() now passes relation-type (SVO vs co-occurrence)
-    into the Relations column so the PDF deep-dive can label them.
-"""
 
 import html
 import io
