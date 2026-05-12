@@ -1,9 +1,4 @@
-"""
-news_analyzer_6_v4.py
-─────────────────────
-Article analysis service: NER, embeddings, SVO graph extraction, sentiment.
-Strictly offline and batched for performance.
-"""
+
 
 import os
 
